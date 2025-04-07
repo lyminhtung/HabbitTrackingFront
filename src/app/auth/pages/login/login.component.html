@@ -1,0 +1,37 @@
+<div class="login-container">
+  <h2>Dang nhap</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email"
+        [ngClass]="{ 'is-invalid': (submitted && getControl('email')?.errors) }"
+        placeholder="Nhập email">
+      
+      <div *ngIf="submitted && getControl('email')?.errors" class="invalid-feedback">
+        <div *ngIf="getControl('email')?.errors?.['required']">Vui lòng nhập email</div>
+        <div *ngIf="getControl('email')?.errors?.['email']">Email không hợp lệ</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Mật khẩu</label>
+      <input type="password" id="password" formControlName="password"
+        [ngClass]="{ 'is-invalid': (submitted && getControl('password')?.errors) }"
+        placeholder="Nhập mật khẩu">
+      
+      <div *ngIf="submitted && getControl('password')?.errors" class="invalid-feedback">
+        <div *ngIf="getControl('password')?.errors?.['required']">Vui lòng nhập mật khẩu</div>
+        <div *ngIf="getControl('password')?.errors?.['minlength']">Mật khẩu cần ít nhất 8 ký tự</div>
+        <div *ngIf="getControl('password')?.errors?.['pattern']">Phải chứa ít nhất 1 chữ hoa và 1 số</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="isLoading" class="btn btn-primary"  >
+        <span >Đăng ký</span>
+        <span *ngIf="isLoading">Đang xử lý...</span>
+      </button>
+    </div>
+
+    <div class="login-link">
+      Đã có tài khoản? <a routerLink="/register">Dang ky ngay</a>
+    </div>
+  </form>

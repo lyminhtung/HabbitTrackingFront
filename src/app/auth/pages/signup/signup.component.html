@@ -1,0 +1,75 @@
+<div class="signup-container">
+    <h2>Đăng ký tài khoản</h2>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName">Họ và tên</label>
+        <input type="text" id="fullName" formControlName="fullName"
+          [ngClass]="{ 'is-invalid': (submitted && getControl('fullName')?.errors) }"
+          placeholder="Nhập họ và tên">
+        
+        <div *ngIf="submitted && getControl('fullName')?.errors" class="invalid-feedback">
+          <div *ngIf="getControl('fullName')?.errors?.['required']">Vui lòng nhập họ và tên</div>
+          <div *ngIf="getControl('fullName')?.errors?.['pattern']">Chỉ chấp nhận chữ cái và khoảng trắng</div>
+        </div>
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email"
+          [ngClass]="{ 'is-invalid': (submitted && getControl('email')?.errors) }"
+          placeholder="Nhập email">
+        
+        <div *ngIf="submitted && getControl('email')?.errors" class="invalid-feedback">
+          <div *ngIf="getControl('email')?.errors?.['required']">Vui lòng nhập email</div>
+          <div *ngIf="getControl('email')?.errors?.['email']">Email không hợp lệ</div>
+        </div>
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" formControlName="password"
+          [ngClass]="{ 'is-invalid': (submitted && getControl('password')?.errors) }"
+          placeholder="Nhập mật khẩu">
+        
+        <div *ngIf="submitted && getControl('password')?.errors" class="invalid-feedback">
+          <div *ngIf="getControl('password')?.errors?.['required']">Vui lòng nhập mật khẩu</div>
+          <div *ngIf="getControl('password')?.errors?.['minlength']">Mật khẩu cần ít nhất 8 ký tự</div>
+          <div *ngIf="getControl('password')?.errors?.['pattern']">Phải chứa ít nhất 1 chữ hoa và 1 số</div>
+        </div>
+      </div>
+  
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Xác nhận mật khẩu</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword"
+          [ngClass]="{ 'is-invalid': submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch']) }"
+          placeholder="Nhập lại mật khẩu">
+        
+        <div *ngIf="submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch'])" 
+             class="invalid-feedback">
+          <div *ngIf="getControl('confirmPassword')?.errors?.['required']">Vui lòng xác nhận mật khẩu</div>
+          <div *ngIf="registerForm.errors?.['mismatch']">Mật khẩu không khớp</div>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit" [disabled]="isLoading" class="btn btn-primary">
+          <span *ngIf="!isLoading">Đăng ký</span>
+          <span *ngIf="isLoading">Đang xử lý...</span>
+        </button>
+      </div>
+  
+      <div class="login-link">
+        Đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
+      </div>
+    </form>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+.icons {
+    margin-top: 15px;
+  }
+  
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  
+  }
+  
+  
+  i {
+    font-size: 15px;
+  }
+  
+  section {
+    background-color:black ;
+    color: #fff;
+  }
+  
+  h3 {
+    font-weight: bold;
+    color: white;
+  }
+  
+   #end {
+    background-color: rgb(31, 29, 24);
+  } 
+  
+  .gap-3 {
+    gap: 15px;
+  }
+  
+  a{
+    color: white;
+  }

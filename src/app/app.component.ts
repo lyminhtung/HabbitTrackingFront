@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss',
-  imports: [RouterOutlet,RouterModule],
-   template: `<router-outlet></router-outlet>`
+  imports: [RouterOutlet],
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent {
   title = 'HabitTrackingFrontEnd';
@@ -16,3 +16,4 @@ export class AppComponent {
     this.titleService.setTitle(this.title);
   }
 }
+

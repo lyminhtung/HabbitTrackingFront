@@ -1,0 +1,29 @@
+.line-star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .line {
+    width: 70px; 
+    height: 4px;
+    background-color: orange; 
+    margin: 0 5px;
+  }
+  
+  .star {
+    font-size: 20px; 
+    color: orange; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+  }
+  section{
+   background-color: white;
+  
+  }
+  h1 ,p{
+    color: orange;
+  }

@@ -39,6 +39,8 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.scss"
             ],
@@ -99,6 +101,8 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.scss"
             ],

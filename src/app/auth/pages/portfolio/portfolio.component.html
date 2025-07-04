@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<section class="portfolio-header d-flex flex-column justify-content-center align-items-center text-center py-5">
+    <h1 class="portfolio-title fs-1 text-uppercase fw-bolder">TOP dessert</h1>
+    <div class="line-star d-flex align-items-center justify-content-center ">
+      <div class="line"></div>
+      <div class="star mx-2">★</div>
+      <div class="line"></div>
+    </div>
+  </section>
+  
+  <section class="portfolio-gallery pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let item of portfolioItems">
+          <div class="image position-relative" (click)="openModal(item.image)">
+            <img [src]="item.image" [alt]="item.alt" class="w-100 rounded-3">
+            <div class="layer position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center rounded-3">
+              <i class="fa-solid fa-plus fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div *ngIf="selectedImage" class="modal" (click)="closeModal()">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <img [src]="selectedImage" alt="Selected Portfolio" class="w-100 rounded-3">
+    </div>
+  </div>
+  <app-footer></app-footer>

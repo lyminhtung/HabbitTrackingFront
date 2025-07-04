@@ -1,75 +1,149 @@
-<div class="signup-container">
-    <h2>Đăng ký tài khoản</h2>
-    
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-      <!-- Full Name -->
-      <div class="form-group">
-        <label for="fullName">Họ và tên</label>
-        <input type="text" id="fullName" formControlName="fullName"
-          [ngClass]="{ 'is-invalid': (submitted && getControl('fullName')?.errors) }"
-          placeholder="Nhập họ và tên">
-        
-        <div *ngIf="submitted && getControl('fullName')?.errors" class="invalid-feedback">
-          <div *ngIf="getControl('fullName')?.errors?.['required']">Vui lòng nhập họ và tên</div>
-          <div *ngIf="getControl('fullName')?.errors?.['pattern']">Chỉ chấp nhận chữ cái và khoảng trắng</div>
+
+
+<div class="signup-page">
+  <div class="signup-container">
+    <div class="signup-card">
+      <div class="signup-header">
+        <div class="logo-section">
+          <i class="fas fa-user-plus"></i>
         </div>
+        <h2>Create Account</h2>
+        <p>Join us and start your journey today</p>
       </div>
-  
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" formControlName="email"
-          [ngClass]="{ 'is-invalid': (submitted && getControl('email')?.errors) }"
-          placeholder="Nhập email">
-        
-        <div *ngIf="submitted && getControl('email')?.errors" class="invalid-feedback">
-          <div *ngIf="getControl('email')?.errors?.['required']">Vui lòng nhập email</div>
-          <div *ngIf="getControl('email')?.errors?.['email']">Email không hợp lệ</div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate class="signup-form">
+        <!-- Full Name -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-user input-icon"></i>
+            <input 
+              type="text" 
+              id="fullName" 
+              formControlName="fullName"
+              [ngClass]="{ 'is-invalid': (submitted && getControl('fullName')?.errors) }"
+              placeholder="Enter your full name">
+          </div>
+          
+          <div *ngIf="submitted && getControl('fullName')?.errors" class="invalid-feedback">
+            <div *ngIf="getControl('fullName')?.errors?.['required']">
+              <i class="fas fa-exclamation-circle"></i> Full name is required
+            </div>
+            <div *ngIf="getControl('fullName')?.errors?.['pattern']">
+              <i class="fas fa-exclamation-circle"></i> Only letters and spaces are allowed
+            </div>
+          </div>
         </div>
-      </div>
-  
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Mật khẩu</label>
-        <input type="password" id="password" formControlName="password"
-          [ngClass]="{ 'is-invalid': (submitted && getControl('password')?.errors) }"
-          placeholder="Nhập mật khẩu">
-        
-        <div *ngIf="submitted && getControl('password')?.errors" class="invalid-feedback">
-          <div *ngIf="getControl('password')?.errors?.['required']">Vui lòng nhập mật khẩu</div>
-          <div *ngIf="getControl('password')?.errors?.['minlength']">Mật khẩu cần ít nhất 8 ký tự</div>
-          <div *ngIf="getControl('password')?.errors?.['pattern']">Phải chứa ít nhất 1 chữ hoa và 1 số</div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': (submitted && getControl('email')?.errors) }"
+              placeholder="Enter your email">
+          </div>
+          
+          <div *ngIf="submitted && getControl('email')?.errors" class="invalid-feedback">
+            <div *ngIf="getControl('email')?.errors?.['required']">
+              <i class="fas fa-exclamation-circle"></i> Email is required
+            </div>
+            <div *ngIf="getControl('email')?.errors?.['email']">
+              <i class="fas fa-exclamation-circle"></i> Please enter a valid email
+            </div>
+          </div>
         </div>
-      </div>
-  
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <label for="confirmPassword">Xác nhận mật khẩu</label>
-        <input type="password" id="confirmPassword" formControlName="confirmPassword"
-          [ngClass]="{ 'is-invalid': submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch']) }"
-          placeholder="Nhập lại mật khẩu">
-        
-        <div *ngIf="submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch'])" 
-             class="invalid-feedback">
-          <div *ngIf="getControl('confirmPassword')?.errors?.['required']">Vui lòng xác nhận mật khẩu</div>
-          <div *ngIf="registerForm.errors?.['mismatch']">Mật khẩu không khớp</div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input 
+              type="password" 
+              id="password" 
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': (submitted && getControl('password')?.errors) }"
+              placeholder="Create a password">
+          </div>
+          
+          <div *ngIf="submitted && getControl('password')?.errors" class="invalid-feedback">
+            <div *ngIf="getControl('password')?.errors?.['required']">
+              <i class="fas fa-exclamation-circle"></i> Password is required
+            </div>
+            <div *ngIf="getControl('password')?.errors?.['minlength']">
+              <i class="fas fa-exclamation-circle"></i> Password must be at least 8 characters
+            </div>
+            <div *ngIf="getControl('password')?.errors?.['pattern']">
+              <i class="fas fa-exclamation-circle"></i> Must contain at least 1 uppercase letter and 1 number
+            </div>
+          </div>
         </div>
-      </div>
-  
-      <!-- Submit Button -->
-      <div class="form-group">
-        <button type="submit" [disabled]="isLoading" class="btn btn-primary">
-          <span *ngIf="!isLoading">Đăng ký</span>
-          <span *ngIf="isLoading">Đang xử lý...</span>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              formControlName="confirmPassword"
+              [ngClass]="{ 'is-invalid': submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch']) }"
+              placeholder="Confirm your password">
+          </div>
+          
+          <div *ngIf="submitted && (getControl('confirmPassword')?.errors || registerForm.errors?.['mismatch'])" 
+               class="invalid-feedback">
+            <div *ngIf="getControl('confirmPassword')?.errors?.['required']">
+              <i class="fas fa-exclamation-circle"></i> Please confirm your password
+            </div>
+            <div *ngIf="registerForm.errors?.['mismatch']">
+              <i class="fas fa-exclamation-circle"></i> Passwords do not match
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="form-group">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" required>
+            <span class="checkmark"></span>
+            I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="isLoading" class="signup-btn">
+          <span *ngIf="!isLoading">
+            <i class="fas fa-user-plus"></i> Create Account
+          </span>
+          <span *ngIf="isLoading" class="loading">
+            <i class="fas fa-spinner fa-spin"></i> Creating account...
+          </span>
         </button>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <div class="social-signup">
+          <button type="button" class="social-btn google">
+            <i class="fab fa-google"></i> Sign up with Google
+          </button>
+          <button type="button" class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i> Sign up with Facebook
+          </button>
+        </div>
+
+        <div class="login-link">
+          <p>Already have an account? <a href="/login">Sign in here</a></p>
+        </div>
+      </form>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
       </div>
-  
-      <div class="login-link">
-        Đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
-      </div>
-    </form>
-  
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
     </div>
   </div>
+</div>
